@@ -10,7 +10,6 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('rescue');
   
   const handleTabChange = (newTab: string) => {
-    console.log('Portfolio: Tab changing from', activeTab, 'to', newTab);
     setActiveTab(newTab);
   };
 
@@ -71,7 +70,7 @@ export default function Portfolio() {
       <Head>
         <meta charSet="utf-8" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>Portfolio - AMS Enterprises</title>
+        <title className="!z-2">Portfolio - AMS Enterprises</title>
         <style jsx>{`
           body {
             min-height: max(884px, 100dvh);
@@ -83,13 +82,20 @@ export default function Portfolio() {
         className="relative min-h-screen w-full flex flex-col justify-between bg-slate-950 text-slate-300 font-roboto-mono"
       >
         {/* Background Grid Effect */}
-        <div className="absolute inset-0 bg-grid-slate-800/[0.2] [mask-image:linear-gradient(to_bottom,white_10%,transparent_50%)]"></div>
-        
+        <div className="!absolute !inset-0 !top-0 w-full h-[48dvh] !z-10 !opacity-20" style={{
+          backgroundImage: `
+            linear-gradient(rgba(38, 220, 38, 1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(38, 220, 38, 1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px !important',
+          maskImage: 'linear-gradient(to bottom, white 10%, transparent 50%) !important',
+          WebkitMaskImage: 'linear-gradient(to bottom, white 10%, transparent 50%) !important'
+        }}></div>
         <Header />
 
         {/* Page Title */}
-        <div className="pt-24 pb-8 text-center">
-          <h1 className="text-white text-4xl font-bold tracking-tight">Portfolio</h1>
+        <div className="pt-24 pb-8 text-center !z-11">
+          <h1 className="text-white text-4xl font-bold tracking-tight !z-11">Portfolio</h1>
         </div>
 
         {/* Main Content */}

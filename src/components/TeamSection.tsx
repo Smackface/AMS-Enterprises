@@ -18,7 +18,7 @@ export default function TeamSection({ title, members, className = "" }: TeamSect
       <h3 className="text-[#1173d4] text-2xl font-bold leading-tight tracking-tight pb-6 pt-5">
         {title}
       </h3>
-      <div className="grid grid-cols-2 gap-x-4 gap-y-8">
+      <div className="grid grid-cols-6 gap-x-8 gap-y-8">
         {members.map((member, index) => (
           <TeamMember
             key={index}

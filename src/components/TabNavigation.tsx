@@ -1,3 +1,4 @@
+'use client'
 interface Tab {
   id: string;
   label: string;
@@ -11,7 +12,6 @@ interface TabNavigationProps {
 
 export default function TabNavigation({ tabs, activeTab, onTabChange }: TabNavigationProps) {
   const handleTabClick = (tabId: string) => {
-    console.log('Tab clicked:', tabId);
     onTabChange(tabId);
   };
 
