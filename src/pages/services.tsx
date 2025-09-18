@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ServiceCard from '../components/ServiceCard';
+import Header from '../components/shared/Header';
+import Footer from '../components/shared/Footer';
+import ServiceCard from '../components/shared/ServiceCard';
 
 export default function Services() {
   const services = [

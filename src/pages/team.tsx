@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import TeamSection from '../components/TeamSection';
+import Header from '@/components/shared/Header';
+import Footer from '../components/shared/Footer';
+import TeamSection from '../components/team/TeamSection';
 
 export default function Team() {
   const leadership = [
@@ -76,7 +76,6 @@ export default function Team() {
       >
         <div className="flex-grow">
           <Header />
-          
           {/* Page Title */}
           <div className="pt-24 pb-8 text-center">
             <h1 className="text-white text-4xl font-bold tracking-tight">Our Team</h1>

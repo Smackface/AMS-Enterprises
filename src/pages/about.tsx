@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import ValueItem from '../components/ValueItem';
+import Header from '../components/shared/Header';
+import Footer from '../components/shared/Footer';
+import ValueItem from '../components/about/ValueItem';
 
 export default function About() {
   const values = [

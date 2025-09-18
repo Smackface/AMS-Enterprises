@@ -1,11 +1,17 @@
 import Head from 'next/head';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-import Logo from '../components/Logo';
-import AuthInput from '../components/AuthInput';
-import Button from '../components/Button';
+import Logo from '../components/shared/Logo';
+import AuthInput from '../components/client-portal/AuthInput';
+import Button from '../components/shared/Button';
+import Header from '@/components/shared/Header';
+import { useAuth } from '../hooks/useAuth';
 
 export default function ClientPortal() {
+  const router = useRouter();
+  const { signIn, isLoading, isAuthenticated } = useAuth();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -14,16 +20,28 @@ export default function ClientPortal() {
 
   const [errors, setErrors] = useState({
     email: '',
-    password: ''
+    password: '',
+    auth: ''
   });
 
-  const handleSubmit = (e: FormEvent) => {
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/u');
+    }
+  }, [isAuthenticated, router]);
+
+  const successMessage = router.query.message === 'signup-complete'
+    ? 'Account created successfully! Please sign in with your credentials.'
+    : '';
+
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     // Basic validation
     const newErrors = {
       email: '',
-      password: ''
+      password: '',
+      auth: ''
     };
 
     if (!formData.email) {
@@ -41,8 +59,14 @@ export default function ClientPortal() {
     setErrors(newErrors);
 
     if (!newErrors.email && !newErrors.password) {
-      // Handle successful login here
-      console.log('Login submitted:', formData);
+      try {
+        await signIn(formData.email, formData.password);
+      } catch (error: any) {
+        setErrors(prev => ({
+          ...prev,
+          auth: error.message || 'Authentication failed. Please check your credentials.'
+        }));
+      }
     }
   };
 
@@ -57,7 +81,8 @@ export default function ClientPortal() {
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({
         ...prev,
-        [name]: ''
+        [name]: '',
+        auth: '' // Clear auth error when user types
       }));
     }
   };
@@ -78,6 +103,10 @@ export default function ClientPortal() {
       <div 
         className="relative flex h-auto min-h-screen w-full flex-col bg-[#0d1219] dark justify-between group/design-root overflow-x-hidden" 
       >
+        <div className="h-[10dvh]">
+          <Header />
+        </div>
+        
         <div className="p-4 pt-10">
           {/* Logo Section */}
           <div className="mb-8">
@@ -94,6 +123,20 @@ export default function ClientPortal() {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-12">
+            {/* Success Message */}
+            {successMessage && (
+              <div className="bg-green-900/30 border border-green-500 rounded-md p-3">
+                <p className="text-green-400 text-sm">{successMessage}</p>
+              </div>
+            )}
+
+            {/* Auth Error */}
+            {errors.auth && (
+              <div className="bg-red-900/30 border border-red-500 rounded-md p-3">
+                <p className="text-red-400 text-sm">{errors.auth}</p>
+              </div>
+            )}
+
             <AuthInput
               name="email"
               type="email"
@@ -138,9 +181,10 @@ export default function ClientPortal() {
             <div className="mt-8">
               <Button
                 type="submit"
-                className="w-full bg-[#1172d4] hover:bg-[#1172d4]/90"
+                disabled={isLoading}
+                className="w-full bg-[#1172d4] hover:bg-[#1172d4]/90 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Sign In
+                {isLoading ? 'Signing In...' : 'Sign In'}
               </Button>
             </div>
           </form>

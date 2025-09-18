@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import CaseStudyCard from '../components/CaseStudyCard';
-import TabNavigation from '../components/TabNavigation';
-import Button from '../components/Button';
+import Header from '../components/shared/Header';
+import Footer from '../components/shared/Footer';
+import CaseStudyCard from '../components/portfolio/CaseStudyCard';
+import TabNavigation from '../components/portfolio/TabNavigation';
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('rescue');

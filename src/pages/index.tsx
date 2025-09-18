@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Button from '../components/Button';
-import ServiceCard from '../components/ServiceCard';
+import Header from '../components/shared/Header';
+import Footer from '../components/shared/Footer';
+import Button from '../components/shared/Button';
+import ServiceCard from '../components/shared/ServiceCard';
 
 export default function Home() {
   const services = [

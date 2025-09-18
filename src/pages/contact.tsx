@@ -1,11 +1,11 @@
 import Head from 'next/head';
 import { useState, FormEvent } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import FormInput from '../components/FormInput';
-import FormTextarea from '../components/FormTextarea';
-import ContactInfo from '../components/ContactInfo';
-import Button from '../components/Button';
+import Header from '../components/shared/Header';
+import Footer from '../components/shared/Footer';
+import FormInput from '../components/shared/FormInput';
+import FormTextarea from '../components/shared/FormTextarea';
+import ContactInfo from '../components/contact/ContactInfo';
+import Button from '../components/shared/Button';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
