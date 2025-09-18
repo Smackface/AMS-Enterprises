@@ -1,0 +1,64 @@
+@import 'variables';
+
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.panel {
+  position: relative;
+}
+
+.left-panel {
+  padding: clamp(1rem, 3vw, 3rem);
+
+  // Left panel polygon shape
+  clip-path: polygon(
+    0 0,
+    calc(100% - #{$chamfer}) 0,
+    100% #{$chamfer},
+    100% calc(#{$step} - #{$chamfer}),
+    calc(100% - #{$chamfer}) #{$step},
+    calc(100% - #{$chamfer}) calc(100% - #{$step2}),
+    100% calc(100% - #{$step2} + #{$chamfer}),
+    100% calc(100% - #{$chamfer}),
+    calc(100% - #{$chamfer}) 100%,
+    0 100%
+  );
+
+  background: $slate-900;
+}
+
+.right-panel {
+  background: #0e0f14 url('/hero.jpg') center/cover no-repeat;
+
+  // Right panel interlocking polygon shape - fits into ALL left panel's cutouts
+  clip-path: polygon(
+    0 0,
+    #{$chamfer} #{$chamfer},
+    #{$chamfer} calc(#{$step} - #{$chamfer}),
+    0 #{$step},
+    0 calc(100% - #{$step2}),
+    #{$chamfer} calc(100% - #{$step2} + #{$chamfer}),
+    #{$chamfer} calc(100% - #{$chamfer}),
+    0 100%,
+    100% 100%,
+    100% 0
+  );
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .split-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .left-panel {
+    clip-path: none;
+  }
+
+  .right-panel {
+    display: none;
+  }
+}

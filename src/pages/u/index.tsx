@@ -13,7 +13,7 @@ export default function UserDashboard() {
     if (!isLoading && !isAuthenticated) {
       router.push('/client-portal');
     }
-  }, [isAuthenticated, isLoading, router]);
+  }, [isAuthenticated, isLoading]);
 
   const handleLogout = async () => {
     try {

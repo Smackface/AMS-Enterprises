@@ -172,7 +172,7 @@ export default function SignUp() {
       </Head>
 
       <div
-        className="relative flex h-auto min-h-screen w-full flex-col bg-[#0d1219] dark justify-between group/design-root overflow-x-hidden"
+        className="relative flex h-auto min-h-screen w-full flex-col bg-slate-950 dark justify-between group/design-root overflow-x-hidden"
       >
         <div className="h-[10dvh]">
           <Header />

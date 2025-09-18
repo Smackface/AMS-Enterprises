@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from '../components/shared/Header';
 import Footer from '../components/shared/Footer';
+import GridBackground from '@/components/shared/GridBackground';
 
 export default function Terms() {
   return (
@@ -17,11 +18,11 @@ export default function Terms() {
       </Head>
 
       <div 
-        className="relative flex h-auto min-h-screen w-full flex-col bg-[#111a22] dark justify-between group/design-root overflow-x-hidden font-roboto-mono"
+        className="relative flex h-auto min-h-screen w-full flex-col bg-slate-950 dark justify-between group/design-root overflow-x-hidden font-roboto-mono"
       >
         <div className="flex-grow">
           <Header />
-          
+          <GridBackground />
           {/* Page Title */}
           <div className="pt-24 pb-8 text-center">
             <h1 className="text-white text-4xl font-bold tracking-tight">Terms of Service</h1>
@@ -32,7 +33,11 @@ export default function Terms() {
             <div className="prose prose-invert max-w-none">
               <div className="text-slate-300 space-y-6">
                 <p className="text-lg">
-                  Last updated: December 15, 2024
+                  Last updated: {new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
                 </p>
                 
                 <section>

@@ -4,6 +4,7 @@ import Header from '../components/shared/Header';
 import Footer from '../components/shared/Footer';
 import CaseStudyCard from '../components/portfolio/CaseStudyCard';
 import TabNavigation from '../components/portfolio/TabNavigation';
+import GridBackground from '@/components/shared/GridBackground';
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('rescue');
@@ -80,25 +81,17 @@ export default function Portfolio() {
       <div 
         className="relative min-h-screen w-full flex flex-col justify-between bg-slate-950 text-slate-300 font-roboto-mono"
       >
-        {/* Background Grid Effect */}
-        <div className="!absolute !inset-0 !top-0 w-full h-[48dvh] !z-10 !opacity-20" style={{
-          backgroundImage: `
-            linear-gradient(rgba(38, 220, 38, 1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(38, 220, 38, 1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px !important',
-          maskImage: 'linear-gradient(to bottom, white 10%, transparent 50%) !important',
-          WebkitMaskImage: 'linear-gradient(to bottom, white 10%, transparent 50%) !important'
-        }}></div>
         <Header />
 
         {/* Page Title */}
         <div className="pt-24 pb-8 text-center !z-11">
           <h1 className="text-white text-4xl font-bold tracking-tight !z-11">Portfolio</h1>
         </div>
+        {/* Background Grid Effect */}
+        <GridBackground />
 
         {/* Main Content */}
-        <main className="flex-grow">
+        <main className="flex-grow !z-11">
           <div className="container mx-auto px-4 py-12">
             {/* Hero Section */}
             <div className="text-center mb-12">
