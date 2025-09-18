@@ -1,0 +1,30 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - 'if [ "$AWS_BRANCH" == "main" ]; then'
+        - '  echo "On main branch, running amplifyPush..."'
+        - '  amplifyPush --simple'
+        - 'fi'
+frontend:
+  phases:
+    preBuild:
+      commands:
+        # Use Node.js 20.x to resolve incompatible module error
+        - nvm install 20
+        - nvm use 20
+        - node -v
+        - yarn install --frozen-lockfile
+    build:
+      commands:
+        - echo > .env
+        - yarn build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
+      - .next/cache/**/*
